@@ -1,0 +1,969 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> command_list
+Rule 2     command_list -> command SEMICOLON
+Rule 3     command_list -> command SEMICOLON command_list
+Rule 4     command -> import_command
+Rule 5     command -> export_command
+Rule 6     command -> discard_command
+Rule 7     command -> rename_command
+Rule 8     command -> print_command
+Rule 9     command -> select_command
+Rule 10    command -> create_command
+Rule 11    command -> procedure_declaration
+Rule 12    command -> procedure_call
+Rule 13    import_command -> IMPORT TABLE ID FROM STRING
+Rule 14    export_command -> EXPORT TABLE ID AS STRING
+Rule 15    discard_command -> DISCARD TABLE ID
+Rule 16    rename_command -> RENAME TABLE ID ID
+Rule 17    print_command -> PRINT TABLE ID
+Rule 18    select_command -> SELECT select_fields FROM ID
+Rule 19    select_command -> SELECT select_fields FROM ID WHERE condition
+Rule 20    select_command -> SELECT select_fields FROM ID WHERE condition LIMIT NUMBER
+Rule 21    select_fields -> STAR
+Rule 22    select_fields -> field_list
+Rule 23    field_list -> ID
+Rule 24    field_list -> ID COMMA field_list
+Rule 25    condition -> expression
+Rule 26    condition -> condition AND condition
+Rule 27    condition -> condition OR condition
+Rule 28    expression -> ID operator value
+Rule 29    operator -> EQ
+Rule 30    operator -> NEQ
+Rule 31    operator -> LT
+Rule 32    operator -> GT
+Rule 33    operator -> LE
+Rule 34    operator -> GE
+Rule 35    value -> ID
+Rule 36    value -> NUMBER
+Rule 37    value -> STRING
+Rule 38    create_command -> CREATE TABLE ID select_command
+Rule 39    create_command -> CREATE TABLE ID FROM ID JOIN ID USING LPAREN ID RPAREN
+Rule 40    create_command -> CREATE TABLE ID FROM ID JOIN ID ON ID
+Rule 41    procedure_declaration -> PROCEDURE ID DO command_list END
+Rule 42    procedure_call -> CALL ID
+
+Terminals, with rules where they appear
+
+AND                  : 26
+AS                   : 14
+CALL                 : 42
+COMMA                : 24
+CREATE               : 38 39 40
+DISCARD              : 15
+DO                   : 41
+END                  : 41
+EQ                   : 29
+EXPORT               : 14
+FROM                 : 13 18 19 20 39 40
+GE                   : 34
+GT                   : 32
+ID                   : 13 14 15 16 16 17 18 19 20 23 24 28 35 38 39 39 39 39 40 40 40 40 41 42
+IMPORT               : 13
+JOIN                 : 39 40
+LE                   : 33
+LIMIT                : 20
+LPAREN               : 39
+LT                   : 31
+NEQ                  : 30
+NUMBER               : 20 36
+ON                   : 40
+OR                   : 27
+PRINT                : 17
+PROCEDURE            : 41
+RENAME               : 16
+RPAREN               : 39
+SELECT               : 18 19 20
+SEMICOLON            : 2 3
+STAR                 : 21
+STRING               : 13 14 37
+TABLE                : 13 14 15 16 17 38 39 40
+USING                : 39
+WHERE                : 19 20
+error                : 
+
+Nonterminals, with rules where they appear
+
+command              : 2 3
+command_list         : 1 3 41
+condition            : 19 20 26 26 27 27
+create_command       : 10
+discard_command      : 6
+export_command       : 5
+expression           : 25
+field_list           : 22 24
+import_command       : 4
+operator             : 28
+print_command        : 8
+procedure_call       : 12
+procedure_declaration : 11
+program              : 0
+rename_command       : 7
+select_command       : 9 38
+select_fields        : 18 19 20
+value                : 28
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . command_list
+    (2) command_list -> . command SEMICOLON
+    (3) command_list -> . command SEMICOLON command_list
+    (4) command -> . import_command
+    (5) command -> . export_command
+    (6) command -> . discard_command
+    (7) command -> . rename_command
+    (8) command -> . print_command
+    (9) command -> . select_command
+    (10) command -> . create_command
+    (11) command -> . procedure_declaration
+    (12) command -> . procedure_call
+    (13) import_command -> . IMPORT TABLE ID FROM STRING
+    (14) export_command -> . EXPORT TABLE ID AS STRING
+    (15) discard_command -> . DISCARD TABLE ID
+    (16) rename_command -> . RENAME TABLE ID ID
+    (17) print_command -> . PRINT TABLE ID
+    (18) select_command -> . SELECT select_fields FROM ID
+    (19) select_command -> . SELECT select_fields FROM ID WHERE condition
+    (20) select_command -> . SELECT select_fields FROM ID WHERE condition LIMIT NUMBER
+    (38) create_command -> . CREATE TABLE ID select_command
+    (39) create_command -> . CREATE TABLE ID FROM ID JOIN ID USING LPAREN ID RPAREN
+    (40) create_command -> . CREATE TABLE ID FROM ID JOIN ID ON ID
+    (41) procedure_declaration -> . PROCEDURE ID DO command_list END
+    (42) procedure_call -> . CALL ID
+
+    IMPORT          shift and go to state 13
+    EXPORT          shift and go to state 14
+    DISCARD         shift and go to state 15
+    RENAME          shift and go to state 16
+    PRINT           shift and go to state 17
+    SELECT          shift and go to state 18
+    CREATE          shift and go to state 19
+    PROCEDURE       shift and go to state 20
+    CALL            shift and go to state 21
+
+    program                        shift and go to state 1
+    command_list                   shift and go to state 2
+    command                        shift and go to state 3
+    import_command                 shift and go to state 4
+    export_command                 shift and go to state 5
+    discard_command                shift and go to state 6
+    rename_command                 shift and go to state 7
+    print_command                  shift and go to state 8
+    select_command                 shift and go to state 9
+    create_command                 shift and go to state 10
+    procedure_declaration          shift and go to state 11
+    procedure_call                 shift and go to state 12
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> command_list .
+
+    $end            reduce using rule 1 (program -> command_list .)
+
+
+state 3
+
+    (2) command_list -> command . SEMICOLON
+    (3) command_list -> command . SEMICOLON command_list
+
+    SEMICOLON       shift and go to state 22
+
+
+state 4
+
+    (4) command -> import_command .
+
+    SEMICOLON       reduce using rule 4 (command -> import_command .)
+
+
+state 5
+
+    (5) command -> export_command .
+
+    SEMICOLON       reduce using rule 5 (command -> export_command .)
+
+
+state 6
+
+    (6) command -> discard_command .
+
+    SEMICOLON       reduce using rule 6 (command -> discard_command .)
+
+
+state 7
+
+    (7) command -> rename_command .
+
+    SEMICOLON       reduce using rule 7 (command -> rename_command .)
+
+
+state 8
+
+    (8) command -> print_command .
+
+    SEMICOLON       reduce using rule 8 (command -> print_command .)
+
+
+state 9
+
+    (9) command -> select_command .
+
+    SEMICOLON       reduce using rule 9 (command -> select_command .)
+
+
+state 10
+
+    (10) command -> create_command .
+
+    SEMICOLON       reduce using rule 10 (command -> create_command .)
+
+
+state 11
+
+    (11) command -> procedure_declaration .
+
+    SEMICOLON       reduce using rule 11 (command -> procedure_declaration .)
+
+
+state 12
+
+    (12) command -> procedure_call .
+
+    SEMICOLON       reduce using rule 12 (command -> procedure_call .)
+
+
+state 13
+
+    (13) import_command -> IMPORT . TABLE ID FROM STRING
+
+    TABLE           shift and go to state 23
+
+
+state 14
+
+    (14) export_command -> EXPORT . TABLE ID AS STRING
+
+    TABLE           shift and go to state 24
+
+
+state 15
+
+    (15) discard_command -> DISCARD . TABLE ID
+
+    TABLE           shift and go to state 25
+
+
+state 16
+
+    (16) rename_command -> RENAME . TABLE ID ID
+
+    TABLE           shift and go to state 26
+
+
+state 17
+
+    (17) print_command -> PRINT . TABLE ID
+
+    TABLE           shift and go to state 27
+
+
+state 18
+
+    (18) select_command -> SELECT . select_fields FROM ID
+    (19) select_command -> SELECT . select_fields FROM ID WHERE condition
+    (20) select_command -> SELECT . select_fields FROM ID WHERE condition LIMIT NUMBER
+    (21) select_fields -> . STAR
+    (22) select_fields -> . field_list
+    (23) field_list -> . ID
+    (24) field_list -> . ID COMMA field_list
+
+    STAR            shift and go to state 30
+    ID              shift and go to state 29
+
+    select_fields                  shift and go to state 28
+    field_list                     shift and go to state 31
+
+state 19
+
+    (38) create_command -> CREATE . TABLE ID select_command
+    (39) create_command -> CREATE . TABLE ID FROM ID JOIN ID USING LPAREN ID RPAREN
+    (40) create_command -> CREATE . TABLE ID FROM ID JOIN ID ON ID
+
+    TABLE           shift and go to state 32
+
+
+state 20
+
+    (41) procedure_declaration -> PROCEDURE . ID DO command_list END
+
+    ID              shift and go to state 33
+
+
+state 21
+
+    (42) procedure_call -> CALL . ID
+
+    ID              shift and go to state 34
+
+
+state 22
+
+    (2) command_list -> command SEMICOLON .
+    (3) command_list -> command SEMICOLON . command_list
+    (2) command_list -> . command SEMICOLON
+    (3) command_list -> . command SEMICOLON command_list
+    (4) command -> . import_command
+    (5) command -> . export_command
+    (6) command -> . discard_command
+    (7) command -> . rename_command
+    (8) command -> . print_command
+    (9) command -> . select_command
+    (10) command -> . create_command
+    (11) command -> . procedure_declaration
+    (12) command -> . procedure_call
+    (13) import_command -> . IMPORT TABLE ID FROM STRING
+    (14) export_command -> . EXPORT TABLE ID AS STRING
+    (15) discard_command -> . DISCARD TABLE ID
+    (16) rename_command -> . RENAME TABLE ID ID
+    (17) print_command -> . PRINT TABLE ID
+    (18) select_command -> . SELECT select_fields FROM ID
+    (19) select_command -> . SELECT select_fields FROM ID WHERE condition
+    (20) select_command -> . SELECT select_fields FROM ID WHERE condition LIMIT NUMBER
+    (38) create_command -> . CREATE TABLE ID select_command
+    (39) create_command -> . CREATE TABLE ID FROM ID JOIN ID USING LPAREN ID RPAREN
+    (40) create_command -> . CREATE TABLE ID FROM ID JOIN ID ON ID
+    (41) procedure_declaration -> . PROCEDURE ID DO command_list END
+    (42) procedure_call -> . CALL ID
+
+    $end            reduce using rule 2 (command_list -> command SEMICOLON .)
+    END             reduce using rule 2 (command_list -> command SEMICOLON .)
+    IMPORT          shift and go to state 13
+    EXPORT          shift and go to state 14
+    DISCARD         shift and go to state 15
+    RENAME          shift and go to state 16
+    PRINT           shift and go to state 17
+    SELECT          shift and go to state 18
+    CREATE          shift and go to state 19
+    PROCEDURE       shift and go to state 20
+    CALL            shift and go to state 21
+
+    command                        shift and go to state 3
+    command_list                   shift and go to state 35
+    import_command                 shift and go to state 4
+    export_command                 shift and go to state 5
+    discard_command                shift and go to state 6
+    rename_command                 shift and go to state 7
+    print_command                  shift and go to state 8
+    select_command                 shift and go to state 9
+    create_command                 shift and go to state 10
+    procedure_declaration          shift and go to state 11
+    procedure_call                 shift and go to state 12
+
+state 23
+
+    (13) import_command -> IMPORT TABLE . ID FROM STRING
+
+    ID              shift and go to state 36
+
+
+state 24
+
+    (14) export_command -> EXPORT TABLE . ID AS STRING
+
+    ID              shift and go to state 37
+
+
+state 25
+
+    (15) discard_command -> DISCARD TABLE . ID
+
+    ID              shift and go to state 38
+
+
+state 26
+
+    (16) rename_command -> RENAME TABLE . ID ID
+
+    ID              shift and go to state 39
+
+
+state 27
+
+    (17) print_command -> PRINT TABLE . ID
+
+    ID              shift and go to state 40
+
+
+state 28
+
+    (18) select_command -> SELECT select_fields . FROM ID
+    (19) select_command -> SELECT select_fields . FROM ID WHERE condition
+    (20) select_command -> SELECT select_fields . FROM ID WHERE condition LIMIT NUMBER
+
+    FROM            shift and go to state 41
+
+
+state 29
+
+    (23) field_list -> ID .
+    (24) field_list -> ID . COMMA field_list
+
+    FROM            reduce using rule 23 (field_list -> ID .)
+    COMMA           shift and go to state 42
+
+
+state 30
+
+    (21) select_fields -> STAR .
+
+    FROM            reduce using rule 21 (select_fields -> STAR .)
+
+
+state 31
+
+    (22) select_fields -> field_list .
+
+    FROM            reduce using rule 22 (select_fields -> field_list .)
+
+
+state 32
+
+    (38) create_command -> CREATE TABLE . ID select_command
+    (39) create_command -> CREATE TABLE . ID FROM ID JOIN ID USING LPAREN ID RPAREN
+    (40) create_command -> CREATE TABLE . ID FROM ID JOIN ID ON ID
+
+    ID              shift and go to state 43
+
+
+state 33
+
+    (41) procedure_declaration -> PROCEDURE ID . DO command_list END
+
+    DO              shift and go to state 44
+
+
+state 34
+
+    (42) procedure_call -> CALL ID .
+
+    SEMICOLON       reduce using rule 42 (procedure_call -> CALL ID .)
+
+
+state 35
+
+    (3) command_list -> command SEMICOLON command_list .
+
+    $end            reduce using rule 3 (command_list -> command SEMICOLON command_list .)
+    END             reduce using rule 3 (command_list -> command SEMICOLON command_list .)
+
+
+state 36
+
+    (13) import_command -> IMPORT TABLE ID . FROM STRING
+
+    FROM            shift and go to state 45
+
+
+state 37
+
+    (14) export_command -> EXPORT TABLE ID . AS STRING
+
+    AS              shift and go to state 46
+
+
+state 38
+
+    (15) discard_command -> DISCARD TABLE ID .
+
+    SEMICOLON       reduce using rule 15 (discard_command -> DISCARD TABLE ID .)
+
+
+state 39
+
+    (16) rename_command -> RENAME TABLE ID . ID
+
+    ID              shift and go to state 47
+
+
+state 40
+
+    (17) print_command -> PRINT TABLE ID .
+
+    SEMICOLON       reduce using rule 17 (print_command -> PRINT TABLE ID .)
+
+
+state 41
+
+    (18) select_command -> SELECT select_fields FROM . ID
+    (19) select_command -> SELECT select_fields FROM . ID WHERE condition
+    (20) select_command -> SELECT select_fields FROM . ID WHERE condition LIMIT NUMBER
+
+    ID              shift and go to state 48
+
+
+state 42
+
+    (24) field_list -> ID COMMA . field_list
+    (23) field_list -> . ID
+    (24) field_list -> . ID COMMA field_list
+
+    ID              shift and go to state 29
+
+    field_list                     shift and go to state 49
+
+state 43
+
+    (38) create_command -> CREATE TABLE ID . select_command
+    (39) create_command -> CREATE TABLE ID . FROM ID JOIN ID USING LPAREN ID RPAREN
+    (40) create_command -> CREATE TABLE ID . FROM ID JOIN ID ON ID
+    (18) select_command -> . SELECT select_fields FROM ID
+    (19) select_command -> . SELECT select_fields FROM ID WHERE condition
+    (20) select_command -> . SELECT select_fields FROM ID WHERE condition LIMIT NUMBER
+
+    FROM            shift and go to state 51
+    SELECT          shift and go to state 18
+
+    select_command                 shift and go to state 50
+
+state 44
+
+    (41) procedure_declaration -> PROCEDURE ID DO . command_list END
+    (2) command_list -> . command SEMICOLON
+    (3) command_list -> . command SEMICOLON command_list
+    (4) command -> . import_command
+    (5) command -> . export_command
+    (6) command -> . discard_command
+    (7) command -> . rename_command
+    (8) command -> . print_command
+    (9) command -> . select_command
+    (10) command -> . create_command
+    (11) command -> . procedure_declaration
+    (12) command -> . procedure_call
+    (13) import_command -> . IMPORT TABLE ID FROM STRING
+    (14) export_command -> . EXPORT TABLE ID AS STRING
+    (15) discard_command -> . DISCARD TABLE ID
+    (16) rename_command -> . RENAME TABLE ID ID
+    (17) print_command -> . PRINT TABLE ID
+    (18) select_command -> . SELECT select_fields FROM ID
+    (19) select_command -> . SELECT select_fields FROM ID WHERE condition
+    (20) select_command -> . SELECT select_fields FROM ID WHERE condition LIMIT NUMBER
+    (38) create_command -> . CREATE TABLE ID select_command
+    (39) create_command -> . CREATE TABLE ID FROM ID JOIN ID USING LPAREN ID RPAREN
+    (40) create_command -> . CREATE TABLE ID FROM ID JOIN ID ON ID
+    (41) procedure_declaration -> . PROCEDURE ID DO command_list END
+    (42) procedure_call -> . CALL ID
+
+    IMPORT          shift and go to state 13
+    EXPORT          shift and go to state 14
+    DISCARD         shift and go to state 15
+    RENAME          shift and go to state 16
+    PRINT           shift and go to state 17
+    SELECT          shift and go to state 18
+    CREATE          shift and go to state 19
+    PROCEDURE       shift and go to state 20
+    CALL            shift and go to state 21
+
+    command_list                   shift and go to state 52
+    command                        shift and go to state 3
+    import_command                 shift and go to state 4
+    export_command                 shift and go to state 5
+    discard_command                shift and go to state 6
+    rename_command                 shift and go to state 7
+    print_command                  shift and go to state 8
+    select_command                 shift and go to state 9
+    create_command                 shift and go to state 10
+    procedure_declaration          shift and go to state 11
+    procedure_call                 shift and go to state 12
+
+state 45
+
+    (13) import_command -> IMPORT TABLE ID FROM . STRING
+
+    STRING          shift and go to state 53
+
+
+state 46
+
+    (14) export_command -> EXPORT TABLE ID AS . STRING
+
+    STRING          shift and go to state 54
+
+
+state 47
+
+    (16) rename_command -> RENAME TABLE ID ID .
+
+    SEMICOLON       reduce using rule 16 (rename_command -> RENAME TABLE ID ID .)
+
+
+state 48
+
+    (18) select_command -> SELECT select_fields FROM ID .
+    (19) select_command -> SELECT select_fields FROM ID . WHERE condition
+    (20) select_command -> SELECT select_fields FROM ID . WHERE condition LIMIT NUMBER
+
+    SEMICOLON       reduce using rule 18 (select_command -> SELECT select_fields FROM ID .)
+    WHERE           shift and go to state 55
+
+
+state 49
+
+    (24) field_list -> ID COMMA field_list .
+
+    FROM            reduce using rule 24 (field_list -> ID COMMA field_list .)
+
+
+state 50
+
+    (38) create_command -> CREATE TABLE ID select_command .
+
+    SEMICOLON       reduce using rule 38 (create_command -> CREATE TABLE ID select_command .)
+
+
+state 51
+
+    (39) create_command -> CREATE TABLE ID FROM . ID JOIN ID USING LPAREN ID RPAREN
+    (40) create_command -> CREATE TABLE ID FROM . ID JOIN ID ON ID
+
+    ID              shift and go to state 56
+
+
+state 52
+
+    (41) procedure_declaration -> PROCEDURE ID DO command_list . END
+
+    END             shift and go to state 57
+
+
+state 53
+
+    (13) import_command -> IMPORT TABLE ID FROM STRING .
+
+    SEMICOLON       reduce using rule 13 (import_command -> IMPORT TABLE ID FROM STRING .)
+
+
+state 54
+
+    (14) export_command -> EXPORT TABLE ID AS STRING .
+
+    SEMICOLON       reduce using rule 14 (export_command -> EXPORT TABLE ID AS STRING .)
+
+
+state 55
+
+    (19) select_command -> SELECT select_fields FROM ID WHERE . condition
+    (20) select_command -> SELECT select_fields FROM ID WHERE . condition LIMIT NUMBER
+    (25) condition -> . expression
+    (26) condition -> . condition AND condition
+    (27) condition -> . condition OR condition
+    (28) expression -> . ID operator value
+
+    ID              shift and go to state 58
+
+    condition                      shift and go to state 59
+    expression                     shift and go to state 60
+
+state 56
+
+    (39) create_command -> CREATE TABLE ID FROM ID . JOIN ID USING LPAREN ID RPAREN
+    (40) create_command -> CREATE TABLE ID FROM ID . JOIN ID ON ID
+
+    JOIN            shift and go to state 61
+
+
+state 57
+
+    (41) procedure_declaration -> PROCEDURE ID DO command_list END .
+
+    SEMICOLON       reduce using rule 41 (procedure_declaration -> PROCEDURE ID DO command_list END .)
+
+
+state 58
+
+    (28) expression -> ID . operator value
+    (29) operator -> . EQ
+    (30) operator -> . NEQ
+    (31) operator -> . LT
+    (32) operator -> . GT
+    (33) operator -> . LE
+    (34) operator -> . GE
+
+    EQ              shift and go to state 63
+    NEQ             shift and go to state 64
+    LT              shift and go to state 65
+    GT              shift and go to state 66
+    LE              shift and go to state 67
+    GE              shift and go to state 68
+
+    operator                       shift and go to state 62
+
+state 59
+
+    (19) select_command -> SELECT select_fields FROM ID WHERE condition .
+    (20) select_command -> SELECT select_fields FROM ID WHERE condition . LIMIT NUMBER
+    (26) condition -> condition . AND condition
+    (27) condition -> condition . OR condition
+
+    SEMICOLON       reduce using rule 19 (select_command -> SELECT select_fields FROM ID WHERE condition .)
+    LIMIT           shift and go to state 69
+    AND             shift and go to state 70
+    OR              shift and go to state 71
+
+
+state 60
+
+    (25) condition -> expression .
+
+    LIMIT           reduce using rule 25 (condition -> expression .)
+    AND             reduce using rule 25 (condition -> expression .)
+    OR              reduce using rule 25 (condition -> expression .)
+    SEMICOLON       reduce using rule 25 (condition -> expression .)
+
+
+state 61
+
+    (39) create_command -> CREATE TABLE ID FROM ID JOIN . ID USING LPAREN ID RPAREN
+    (40) create_command -> CREATE TABLE ID FROM ID JOIN . ID ON ID
+
+    ID              shift and go to state 72
+
+
+state 62
+
+    (28) expression -> ID operator . value
+    (35) value -> . ID
+    (36) value -> . NUMBER
+    (37) value -> . STRING
+
+    ID              shift and go to state 73
+    NUMBER          shift and go to state 75
+    STRING          shift and go to state 76
+
+    value                          shift and go to state 74
+
+state 63
+
+    (29) operator -> EQ .
+
+    ID              reduce using rule 29 (operator -> EQ .)
+    NUMBER          reduce using rule 29 (operator -> EQ .)
+    STRING          reduce using rule 29 (operator -> EQ .)
+
+
+state 64
+
+    (30) operator -> NEQ .
+
+    ID              reduce using rule 30 (operator -> NEQ .)
+    NUMBER          reduce using rule 30 (operator -> NEQ .)
+    STRING          reduce using rule 30 (operator -> NEQ .)
+
+
+state 65
+
+    (31) operator -> LT .
+
+    ID              reduce using rule 31 (operator -> LT .)
+    NUMBER          reduce using rule 31 (operator -> LT .)
+    STRING          reduce using rule 31 (operator -> LT .)
+
+
+state 66
+
+    (32) operator -> GT .
+
+    ID              reduce using rule 32 (operator -> GT .)
+    NUMBER          reduce using rule 32 (operator -> GT .)
+    STRING          reduce using rule 32 (operator -> GT .)
+
+
+state 67
+
+    (33) operator -> LE .
+
+    ID              reduce using rule 33 (operator -> LE .)
+    NUMBER          reduce using rule 33 (operator -> LE .)
+    STRING          reduce using rule 33 (operator -> LE .)
+
+
+state 68
+
+    (34) operator -> GE .
+
+    ID              reduce using rule 34 (operator -> GE .)
+    NUMBER          reduce using rule 34 (operator -> GE .)
+    STRING          reduce using rule 34 (operator -> GE .)
+
+
+state 69
+
+    (20) select_command -> SELECT select_fields FROM ID WHERE condition LIMIT . NUMBER
+
+    NUMBER          shift and go to state 77
+
+
+state 70
+
+    (26) condition -> condition AND . condition
+    (25) condition -> . expression
+    (26) condition -> . condition AND condition
+    (27) condition -> . condition OR condition
+    (28) expression -> . ID operator value
+
+    ID              shift and go to state 58
+
+    condition                      shift and go to state 78
+    expression                     shift and go to state 60
+
+state 71
+
+    (27) condition -> condition OR . condition
+    (25) condition -> . expression
+    (26) condition -> . condition AND condition
+    (27) condition -> . condition OR condition
+    (28) expression -> . ID operator value
+
+    ID              shift and go to state 58
+
+    condition                      shift and go to state 79
+    expression                     shift and go to state 60
+
+state 72
+
+    (39) create_command -> CREATE TABLE ID FROM ID JOIN ID . USING LPAREN ID RPAREN
+    (40) create_command -> CREATE TABLE ID FROM ID JOIN ID . ON ID
+
+    USING           shift and go to state 80
+    ON              shift and go to state 81
+
+
+state 73
+
+    (35) value -> ID .
+
+    LIMIT           reduce using rule 35 (value -> ID .)
+    AND             reduce using rule 35 (value -> ID .)
+    OR              reduce using rule 35 (value -> ID .)
+    SEMICOLON       reduce using rule 35 (value -> ID .)
+
+
+state 74
+
+    (28) expression -> ID operator value .
+
+    LIMIT           reduce using rule 28 (expression -> ID operator value .)
+    AND             reduce using rule 28 (expression -> ID operator value .)
+    OR              reduce using rule 28 (expression -> ID operator value .)
+    SEMICOLON       reduce using rule 28 (expression -> ID operator value .)
+
+
+state 75
+
+    (36) value -> NUMBER .
+
+    LIMIT           reduce using rule 36 (value -> NUMBER .)
+    AND             reduce using rule 36 (value -> NUMBER .)
+    OR              reduce using rule 36 (value -> NUMBER .)
+    SEMICOLON       reduce using rule 36 (value -> NUMBER .)
+
+
+state 76
+
+    (37) value -> STRING .
+
+    LIMIT           reduce using rule 37 (value -> STRING .)
+    AND             reduce using rule 37 (value -> STRING .)
+    OR              reduce using rule 37 (value -> STRING .)
+    SEMICOLON       reduce using rule 37 (value -> STRING .)
+
+
+state 77
+
+    (20) select_command -> SELECT select_fields FROM ID WHERE condition LIMIT NUMBER .
+
+    SEMICOLON       reduce using rule 20 (select_command -> SELECT select_fields FROM ID WHERE condition LIMIT NUMBER .)
+
+
+state 78
+
+    (26) condition -> condition AND condition .
+    (26) condition -> condition . AND condition
+    (27) condition -> condition . OR condition
+
+    LIMIT           reduce using rule 26 (condition -> condition AND condition .)
+    AND             reduce using rule 26 (condition -> condition AND condition .)
+    OR              reduce using rule 26 (condition -> condition AND condition .)
+    SEMICOLON       reduce using rule 26 (condition -> condition AND condition .)
+
+  ! AND             [ shift and go to state 70 ]
+  ! OR              [ shift and go to state 71 ]
+
+
+state 79
+
+    (27) condition -> condition OR condition .
+    (26) condition -> condition . AND condition
+    (27) condition -> condition . OR condition
+
+    LIMIT           reduce using rule 27 (condition -> condition OR condition .)
+    AND             reduce using rule 27 (condition -> condition OR condition .)
+    OR              reduce using rule 27 (condition -> condition OR condition .)
+    SEMICOLON       reduce using rule 27 (condition -> condition OR condition .)
+
+  ! AND             [ shift and go to state 70 ]
+  ! OR              [ shift and go to state 71 ]
+
+
+state 80
+
+    (39) create_command -> CREATE TABLE ID FROM ID JOIN ID USING . LPAREN ID RPAREN
+
+    LPAREN          shift and go to state 82
+
+
+state 81
+
+    (40) create_command -> CREATE TABLE ID FROM ID JOIN ID ON . ID
+
+    ID              shift and go to state 83
+
+
+state 82
+
+    (39) create_command -> CREATE TABLE ID FROM ID JOIN ID USING LPAREN . ID RPAREN
+
+    ID              shift and go to state 84
+
+
+state 83
+
+    (40) create_command -> CREATE TABLE ID FROM ID JOIN ID ON ID .
+
+    SEMICOLON       reduce using rule 40 (create_command -> CREATE TABLE ID FROM ID JOIN ID ON ID .)
+
+
+state 84
+
+    (39) create_command -> CREATE TABLE ID FROM ID JOIN ID USING LPAREN ID . RPAREN
+
+    RPAREN          shift and go to state 85
+
+
+state 85
+
+    (39) create_command -> CREATE TABLE ID FROM ID JOIN ID USING LPAREN ID RPAREN .
+
+    SEMICOLON       reduce using rule 39 (create_command -> CREATE TABLE ID FROM ID JOIN ID USING LPAREN ID RPAREN .)
+

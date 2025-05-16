@@ -1,0 +1,12 @@
+-- Análise meteorológica do Cávado e Ave
+IMPORT TABLE estacoes FROM "estacoes.csv";
+IMPORT TABLE observacoes FROM "observacoes.csv";
+
+-- Criando a tabela dados_completos através da junção das tabelas estacoes e observacoes
+CREATE TABLE dados_completos FROM estacoes JOIN observacoes USING (Id);
+
+-- Filtrar vento forte
+CREATE TABLE vento_forte SELECT * FROM dados_completos WHERE IntensidadeVentoKM > 10;
+
+-- Exporte a tabela dados_completos
+EXPORT TABLE dados_completos AS "dados_finais.csv";
