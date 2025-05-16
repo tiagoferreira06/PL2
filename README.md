@@ -1,3 +1,5 @@
+Trabalho Prático de PL
+
 📊 CQL - Comma Query Language
 Um interpretador em Python para consultar e manipular arquivos CSV usando uma sintaxe semelhante a SQL.
 🔍 Visão Geral
